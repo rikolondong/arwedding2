@@ -16,6 +16,7 @@
     <style>
 
 
+
  
 
         /* =========================================
@@ -129,6 +130,31 @@
             font-size: 4cqw; 
             color: #fff; 
         }
+
+        /* --- LOGO DI SISI ATAS LAYAR --- */
+        .splash-logo-top {
+            position: absolute;     /* Agar bebas diletakkan di mana saja */
+            top: 15%;                /* Jarak dari sisi atas layar (sesuaikan jika tertutup kamera HP) */
+            left: 50%;              /* Posisi horizontal di tengah */
+            transform: translateX(-50%); /* Trik agar benar-benar presisi di tengah */
+            z-index: 10;            /* Agar berada di atas background */
+            /*! width: 12qw; */           /* Ukuran lebar logo */
+            max-width: 35cqw;       /* Batas maksimal agar tidak kegedean di layar besar */
+            animation: fadeInDown 1.5s ease;
+        }
+
+        .splash-logo-top img {
+            width: 100%;
+            display: block;
+            filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,0.3));
+        }
+
+        /* Animasi muncul dari atas */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translate(-50%, -30px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+
         .splash-couple { 
             font-family: 'JimmyScript', cursive; 
             font-size: 15cqw; 
@@ -590,6 +616,10 @@
     
     
     
+    
+    
+    
+    
     </style>
 </head>
 <body>
@@ -614,6 +644,9 @@
 
             <header id="splash-screen">
                 <img src="10.jpg" class="splash-bg" alt="Cover Blur">
+                <div class="splash-logo-top">
+                    <img src="monogram-ar.png" alt="Logo Monogram">
+                </div>                
                 <div class="splash-content">
                     <p class="splash-title">Undangan Pernikahan</p>
                     <h1 class="splash-couple">Alvina & Riko</h1>
