@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">
     <meta name="description" content="Undangan Pernikahan A&R | Kepada Yth Bapak/Ibu/Saudara/i Hadirin Tamu Undangan">
+    <meta name="author" content="AR Softworks">
+    <meta name="copyright" content="Hak Cipta © 2026 Alvina & Riko. All Rights Reserved.">
     <title>The Wedding of Alvina & Riko</title>
 
     <link rel="shortcut icon" href="favicon-32x32.png" type="image/png">
@@ -14,15 +16,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
     <style>
+        /* CSS DIBIARKAN SAMA SEPERTI ASLINYA */
+        /* ... (CSS Anda sebelumnya) ... */
 
+        /* PENTING: Mencegah seleksi teks (blok biru) pada seluruh website */
+        body {
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+        }
+        
+        /* Kecuali input atau textarea jika ada */
+        input, textarea {
+            -webkit-user-select: text;
+            user-select: text;
+        }
 
-
- 
-
-        /* =========================================
-           1. FONTS & RESET
-           ========================================= */
-        /* Optimasi font loading dengan swap */
+        /* ... (Lanjutan CSS Anda sebelumnya) ... */
+        
         @font-face { font-family: 'Engagement'; src: url('Engagement-Regular.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
         @font-face { font-family: 'BodoniCondC'; src: url('BodoniCondC.otf') format('opentype'); font-weight: normal; font-style: normal; font-display: swap; }
         @font-face { font-family: 'IbarraRealNova'; src: url('IbarraRealNova-VariableFont_wght.ttf') format('truetype'); font-weight: bold; font-style: normal; font-display: swap; }
@@ -613,16 +624,9 @@
             .desktop-bg-side { display: none; }
             .mobile-frame-wrapper { max-width: 100%; border-left: none; box-shadow: none; }
         }
-    
-    
-    
-    
-    
-    
-    
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
     <div class="desktop-layout">
         
@@ -684,7 +688,7 @@
                     <div class="overlay"></div>
                     <div class="page-content-wrapper">
                         <div class="page2-container">
-                            <div class="monogram-p2 scroll-anim d-1"><img src="monogram-ar.png" alt="A&R Monogram"></div>                  
+                            <div class="monogram-p2 scroll-anim d-1"><img src="monogram-ar.png" alt="A&R Monogram"></div>                   
                             <div class="dark-glass-box scroll-anim d-2">
                                 <p class="quote-text">"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."</p>
                                 <p class="quote-citation">(QS Ar-Rum : 21)</p>
@@ -739,7 +743,7 @@
                                 <div class="profile-img-container"><img src="groom.jpg" alt="Riko Reky Londong" loading="lazy"></div>
                                 <h3 class="bride-name">Riko Reky Londong., S.Kom</h3>
                                 <p class="bride-parents">Putra dari Bapak Piet Londong &</p>
-                                <p class="bride-parents">Ibu Tuty Alawiyah</p>                                
+                                <p class="bride-parents">Ibu Tuty Alawiyah</p>                                    
                             </div>
                         </div>
                     </div>
@@ -872,163 +876,7 @@
     </div> 
 
     <script>
-        // --- 1. SETUP VARIABEL ---
-        const splashScreen = document.getElementById('splash-screen');
-        const appContainer = document.querySelector('.app-container');
-        const bottomNav = document.querySelector('.bottom-nav');
-        const musicBtn = document.getElementById('music-control');
-        const bgMusic = document.getElementById('bg-music');
-        const navItems = document.querySelectorAll('.nav-item');
-        let isMusicPlaying = false;
-
-        // --- 2. NAMA TAMU ---
-        const params = new URLSearchParams(window.location.search);
-        const name = params.get('to') || params.get('u');
-        if (name) {
-            document.getElementById('guest-name').innerText = name.replace(/_/g, ' ').replace(/\+/g, ' ');
-        }
-
-        // --- 3. BUKA UNDANGAN (SPLASH) ---
-        document.getElementById('btn-buka').addEventListener('click', function() {
-            splashScreen.classList.add('slide-up');
-            appContainer.classList.add('show');
-            
-            // Tampilkan Navigasi & Tombol Musik
-            setTimeout(() => {
-                bottomNav.classList.add('show-nav');
-                musicBtn.style.display = 'flex';
-                // Trigger page 1 active untuk memulai video page 1
-                document.getElementById('page1').classList.add('active-page');
-                playVideoInPage(document.getElementById('page1'));
-            }, 500);
-
-            // Putar Musik
-            bgMusic.play().then(() => {
-                isMusicPlaying = true;
-                musicBtn.classList.add('playing');
-            }).catch(e => {
-                console.log("Autoplay blocked:", e);
-                isMusicPlaying = false;
-            });
-        });
-
-        // --- 4. KONTROL MUSIK ---
-        musicBtn.addEventListener('click', function() {
-            if (isMusicPlaying) {
-                bgMusic.pause();
-                musicBtn.classList.remove('playing');
-            } else {
-                bgMusic.play();
-                musicBtn.classList.add('playing');
-            }
-            isMusicPlaying = !isMusicPlaying;
-        });
-
-        // --- 5. NAVIGASI SCROLL, ANIMASI & VIDEO CONTROL ---
-        function scrollToPage(pageId) {
-            document.getElementById(pageId).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Helper: Play/Pause Video in Section
-        function playVideoInPage(section) {
-            const vid = section.querySelector('video');
-            if (vid) {
-                vid.play().catch(err => console.log("Video play interrupted", err));
-            }
-        }
-
-        function pauseVideoInPage(section) {
-            const vid = section.querySelector('video');
-            if (vid) {
-                vid.pause();
-            }
-        }
-
-        // Detect Active Section
-        const sections = document.querySelectorAll('.invitation-page');
-        const observerOptions = { root: appContainer, threshold: 0.5 };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Masuk Viewport
-                    entry.target.classList.add('active-page');
-                    
-                    // Logic Video: Play
-                    playVideoInPage(entry.target);
-
-                    // Update Navigasi
-                    const navIndex = entry.target.getAttribute('data-nav');
-                    if (navIndex !== null) {
-                        navItems.forEach(item => item.classList.remove('active'));
-                        if(navItems[navIndex]) navItems[navIndex].classList.add('active');
-                    }
-                } else {
-                    // Keluar Viewport
-                    entry.target.classList.remove('active-page');
-                    // Logic Video: Pause (Hemat Baterai & Memori)
-                    pauseVideoInPage(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => observer.observe(section));
-
-        // --- 6. LOGIKA COUNTDOWN ---
-        var countDownDate = new Date("Jan 11, 2026 00:00:00").getTime();
-        var x = setInterval(function() {
-            var now = new Date().getTime();
-            var distance = countDownDate - now;
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            if (document.getElementById("days")) {
-                document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-                document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-                document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-                document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-            }
-
-            if (distance < 0) {
-                clearInterval(x);
-                var box = document.querySelector(".countdown-box");
-                if(box) box.innerHTML = "<div class='dark-glass-box' style='padding:2cqw;'>Acara Telah Dimulai</div>";
-            }
-        }, 1000);
-
-        // --- 7. COPY TO CLIPBOARD ---
-        function showToast(message) {
-            var toast = document.getElementById("copy-toast");
-            toast.innerText = message;
-            toast.className = "show";
-            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
-        }
-
-        function fallbackCopy(text, label) {
-            var textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed"; 
-            document.body.appendChild(textArea);
-            textArea.focus(); textArea.select();
-            try {
-                document.execCommand('copy');
-                showToast(label + " Berhasil Disalin!");
-            } catch (err) { showToast("Gagal menyalin"); }
-            document.body.removeChild(textArea);
-        }
-
-        function copyToClipboard(text, label) {
-            if (!navigator.clipboard) { fallbackCopy(text, label); return; }
-            navigator.clipboard.writeText(text).then(function() { showToast(label + " Berhasil Disalin!"); }, 
-            function(err) { fallbackCopy(text, label); });
-        }
-
-        function copyAddress() {
-            var text = document.getElementById("address-text").innerText;
-            copyToClipboard(text, "Alamat");
-        }
+const _0x183967=_0x3471;(function(_0x194a34,_0x3517b2){const _0x43ea69=_0x3471,_0x32a7a5=_0x194a34();while(!![]){try{const _0x1f14b9=-parseInt(_0x43ea69(0x1da))/0x1*(-parseInt(_0x43ea69(0x219))/0x2)+parseInt(_0x43ea69(0x1de))/0x3*(parseInt(_0x43ea69(0x1e2))/0x4)+-parseInt(_0x43ea69(0x21f))/0x5+-parseInt(_0x43ea69(0x1f3))/0x6*(parseInt(_0x43ea69(0x20e))/0x7)+parseInt(_0x43ea69(0x21d))/0x8*(parseInt(_0x43ea69(0x1f0))/0x9)+-parseInt(_0x43ea69(0x1fe))/0xa*(parseInt(_0x43ea69(0x1dd))/0xb)+-parseInt(_0x43ea69(0x21e))/0xc*(-parseInt(_0x43ea69(0x210))/0xd);if(_0x1f14b9===_0x3517b2)break;else _0x32a7a5['push'](_0x32a7a5['shift']());}catch(_0x423a80){_0x32a7a5['push'](_0x32a7a5['shift']());}}}(_0x9b6c,0x37e7e));const splashScreen=document['getElementById'](_0x183967(0x227)),appContainer=document[_0x183967(0x1ee)]('.app-container'),bottomNav=document['querySelector'](_0x183967(0x21c)),musicBtn=document[_0x183967(0x1e7)](_0x183967(0x1f6)),bgMusic=document['getElementById'](_0x183967(0x1ed)),navItems=document['querySelectorAll'](_0x183967(0x224));let isMusicPlaying=![];const params=new URLSearchParams(window[_0x183967(0x1d7)][_0x183967(0x211)]),name=params['get']('to')||params[_0x183967(0x1fb)]('u');name&&(document[_0x183967(0x1e7)](_0x183967(0x204))[_0x183967(0x1db)]=name[_0x183967(0x1e9)](/_/g,'\x20')[_0x183967(0x1e9)](/\+/g,'\x20'));document['getElementById'](_0x183967(0x218))[_0x183967(0x1fc)]('click',function(){const _0x307bdb=_0x183967;splashScreen[_0x307bdb(0x1e5)][_0x307bdb(0x209)]('slide-up'),appContainer[_0x307bdb(0x1e5)]['add'](_0x307bdb(0x1ff)),setTimeout(()=>{const _0x35fb9c=_0x307bdb;bottomNav[_0x35fb9c(0x1e5)][_0x35fb9c(0x209)](_0x35fb9c(0x221)),musicBtn[_0x35fb9c(0x1e0)]['display']=_0x35fb9c(0x222),document[_0x35fb9c(0x1e7)](_0x35fb9c(0x1fd))[_0x35fb9c(0x1e5)][_0x35fb9c(0x209)]('active-page'),playVideoInPage(document[_0x35fb9c(0x1e7)]('page1'));},0x1f4),bgMusic[_0x307bdb(0x225)]()[_0x307bdb(0x20a)](()=>{const _0x4ad22a=_0x307bdb;isMusicPlaying=!![],musicBtn[_0x4ad22a(0x1e5)]['add'](_0x4ad22a(0x223));})['catch'](_0x2458bf=>{const _0x3bfd22=_0x307bdb;console[_0x3bfd22(0x20b)]('Autoplay\x20blocked:',_0x2458bf),isMusicPlaying=![];});}),musicBtn[_0x183967(0x1fc)](_0x183967(0x202),function(){const _0x262597=_0x183967;isMusicPlaying?(bgMusic['pause'](),musicBtn[_0x262597(0x1e5)][_0x262597(0x1ec)](_0x262597(0x223))):(bgMusic[_0x262597(0x225)](),musicBtn[_0x262597(0x1e5)][_0x262597(0x209)]('playing')),isMusicPlaying=!isMusicPlaying;});function scrollToPage(_0x3e910b){const _0x10a323=_0x183967;document[_0x10a323(0x1e7)](_0x3e910b)[_0x10a323(0x1f5)]({'behavior':_0x10a323(0x1e4)});}function playVideoInPage(_0x1b7006){const _0x302fdd=_0x183967,_0x1ca7fc=_0x1b7006[_0x302fdd(0x1ee)](_0x302fdd(0x1f8));_0x1ca7fc&&_0x1ca7fc['play']()['catch'](_0x254b25=>console[_0x302fdd(0x20b)](_0x302fdd(0x1e3),_0x254b25));}function pauseVideoInPage(_0xce8988){const _0x928aeb=_0x183967,_0x35136c=_0xce8988[_0x928aeb(0x1ee)]('video');_0x35136c&&_0x35136c[_0x928aeb(0x205)]();}function _0x3471(_0x3da91c,_0x45b1ec){_0x3da91c=_0x3da91c-0x1d5;const _0x9b6c57=_0x9b6c();let _0x347125=_0x9b6c57[_0x3da91c];return _0x347125;}const sections=document[_0x183967(0x1e8)](_0x183967(0x215)),observerOptions={'root':appContainer,'threshold':0.5},observer=new IntersectionObserver(_0x95a79=>{const _0x1a5521=_0x183967;_0x95a79[_0x1a5521(0x208)](_0x161dcd=>{const _0x3e5635=_0x1a5521;if(_0x161dcd[_0x3e5635(0x1d5)]){_0x161dcd['target'][_0x3e5635(0x1e5)][_0x3e5635(0x209)](_0x3e5635(0x1fa)),playVideoInPage(_0x161dcd['target']);const _0x1d7075=_0x161dcd['target'][_0x3e5635(0x1f9)]('data-nav');if(_0x1d7075!==null){navItems[_0x3e5635(0x208)](_0x9b2e0c=>_0x9b2e0c['classList'][_0x3e5635(0x1ec)](_0x3e5635(0x20d)));if(navItems[_0x1d7075])navItems[_0x1d7075][_0x3e5635(0x1e5)][_0x3e5635(0x209)]('active');}}else _0x161dcd[_0x3e5635(0x1e6)][_0x3e5635(0x1e5)]['remove'](_0x3e5635(0x1fa)),pauseVideoInPage(_0x161dcd[_0x3e5635(0x1e6)]);});},observerOptions);sections[_0x183967(0x208)](_0x153f72=>observer['observe'](_0x153f72));var countDownDate=new Date(_0x183967(0x1dc))['getTime'](),x=setInterval(function(){const _0x13b904=_0x183967;var _0x24077c=new Date()['getTime'](),_0x3ade61=countDownDate-_0x24077c,_0xa757ed=Math[_0x13b904(0x213)](_0x3ade61/(0x3e8*0x3c*0x3c*0x18)),_0x5c7a53=Math['floor'](_0x3ade61%(0x3e8*0x3c*0x3c*0x18)/(0x3e8*0x3c*0x3c)),_0x489438=Math[_0x13b904(0x213)](_0x3ade61%(0x3e8*0x3c*0x3c)/(0x3e8*0x3c)),_0x37fc41=Math[_0x13b904(0x213)](_0x3ade61%(0x3e8*0x3c)/0x3e8);document[_0x13b904(0x1e7)](_0x13b904(0x1f4))&&(document['getElementById']('days')['innerText']=_0xa757ed<0xa?'0'+_0xa757ed:_0xa757ed,document['getElementById'](_0x13b904(0x20f))[_0x13b904(0x1db)]=_0x5c7a53<0xa?'0'+_0x5c7a53:_0x5c7a53,document['getElementById']('minutes')[_0x13b904(0x1db)]=_0x489438<0xa?'0'+_0x489438:_0x489438,document[_0x13b904(0x1e7)](_0x13b904(0x200))['innerText']=_0x37fc41<0xa?'0'+_0x37fc41:_0x37fc41);if(_0x3ade61<0x0){clearInterval(x);var _0x591bac=document[_0x13b904(0x1ee)](_0x13b904(0x1f1));if(_0x591bac)_0x591bac[_0x13b904(0x220)]=_0x13b904(0x1d9);}},0x3e8);function showToast(_0xe8b045){const _0x2c1fa9=_0x183967;var _0xbadc48=document[_0x2c1fa9(0x1e7)](_0x2c1fa9(0x217));_0xbadc48[_0x2c1fa9(0x1db)]=_0xe8b045,_0xbadc48[_0x2c1fa9(0x216)]=_0x2c1fa9(0x1ff),setTimeout(function(){const _0x1f4685=_0x2c1fa9;_0xbadc48[_0x1f4685(0x216)]=_0xbadc48['className'][_0x1f4685(0x1e9)](_0x1f4685(0x1ff),'');},0xbb8);}function fallbackCopy(_0x4cd259,_0x708b88){const _0x245e9c=_0x183967;var _0x1c0d69=document['createElement']('textarea');_0x1c0d69[_0x245e9c(0x1eb)]=_0x4cd259,_0x1c0d69[_0x245e9c(0x1e0)][_0x245e9c(0x214)]=_0x245e9c(0x1df),document['body'][_0x245e9c(0x1e1)](_0x1c0d69),_0x1c0d69[_0x245e9c(0x21b)](),_0x1c0d69[_0x245e9c(0x226)]();try{document[_0x245e9c(0x203)]('copy'),showToast(_0x708b88+_0x245e9c(0x21a));}catch(_0x2f4bc9){showToast(_0x245e9c(0x201));}document[_0x245e9c(0x1f2)][_0x245e9c(0x1ea)](_0x1c0d69);}function copyToClipboard(_0xec1820,_0x3a728b){const _0x4eca70=_0x183967;if(!navigator[_0x4eca70(0x212)]){fallbackCopy(_0xec1820,_0x3a728b);return;}navigator['clipboard']['writeText'](_0xec1820)[_0x4eca70(0x20a)](function(){const _0x141a7b=_0x4eca70;showToast(_0x3a728b+_0x141a7b(0x21a));},function(_0x4added){fallbackCopy(_0xec1820,_0x3a728b);});}function copyAddress(){const _0x21723a=_0x183967;var _0x444a10=document[_0x21723a(0x1e7)](_0x21723a(0x20c))[_0x21723a(0x1db)];copyToClipboard(_0x444a10,_0x21723a(0x206));}function _0x9b6c(){const _0x285551=['78mVSoKI','days','scrollIntoView','music-control','keyCode','video','getAttribute','active-page','get','addEventListener','page1','10jDcnao','show','seconds','Gagal\x20menyalin','click','execCommand','guest-name','pause','Alamat','contextmenu','forEach','add','then','log','address-text','active','127477BMveMM','hours','195WcUerP','search','clipboard','floor','position','.invitation-page','className','copy-toast','btn-buka','110xIgzTY','\x20Berhasil\x20Disalin!','focus','.bottom-nav','8ELewJM','272484sPNvQr','1874635XpKIUE','innerHTML','show-nav','flex','playing','.nav-item','play','select','splash-screen','isIntersecting','shiftKey','location','ctrlKey','<div\x20class=\x27dark-glass-box\x27\x20style=\x27padding:2cqw;\x27>Acara\x20Telah\x20Dimulai</div>','4799hAXjdM','innerText','Jan\x2011,\x202026\x2000:00:00','1615746HSfHTy','465XDwloI','fixed','style','appendChild','3508cBTbpB','Video\x20play\x20interrupted','smooth','classList','target','getElementById','querySelectorAll','replace','removeChild','value','remove','bg-music','querySelector','charCodeAt','2223549jkWlog','.countdown-box','body'];_0x9b6c=function(){return _0x285551;};return _0x9b6c();}document['addEventListener'](_0x183967(0x207),function(_0xcb2b4c){_0xcb2b4c['preventDefault']();}),document['onkeydown']=function(_0x3c833f){const _0x3a3820=_0x183967;if(_0x3c833f[_0x3a3820(0x1f7)]==0x7b)return![];if(_0x3c833f[_0x3a3820(0x1d8)]&&_0x3c833f[_0x3a3820(0x1d6)]&&_0x3c833f[_0x3a3820(0x1f7)]=='I'[_0x3a3820(0x1ef)](0x0))return![];if(_0x3c833f[_0x3a3820(0x1d8)]&&_0x3c833f['shiftKey']&&_0x3c833f[_0x3a3820(0x1f7)]=='C'['charCodeAt'](0x0))return![];if(_0x3c833f[_0x3a3820(0x1d8)]&&_0x3c833f['shiftKey']&&_0x3c833f['keyCode']=='J'['charCodeAt'](0x0))return![];if(_0x3c833f[_0x3a3820(0x1d8)]&&_0x3c833f['keyCode']=='U'[_0x3a3820(0x1ef)](0x0))return![];};
     </script>
 </body>
 </html>
