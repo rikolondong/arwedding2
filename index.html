@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
     <style>
+
         /* =========================================
            1. FONTS & RESET
            ========================================= */
@@ -22,6 +23,9 @@
         @font-face { font-family: 'BodoniCondC'; src: url('BodoniCondC.otf') format('opentype'); font-weight: normal; font-style: normal; font-display: swap; }
         @font-face { font-family: 'IbarraRealNova'; src: url('IbarraRealNova-VariableFont_wght.ttf') format('truetype'); font-weight: bold; font-style: normal; font-display: swap; }
         @font-face { font-family: 'JimmyScript'; src: url('JimmyScript-Rg.otf') format('opentype'); font-weight: normal; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'Raleway'; src: url('Raleway-Regular.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'Playfair'; src: url('Playfair-Medium.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'Montserrat'; src: url('Montserrat-Regular.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }                        
 
         :root {
             --glass-bg: rgba(0, 0, 0, 0.6);
@@ -298,7 +302,7 @@
         }
         .quote-text { 
             font-family: 'IbarraRealNova', serif; 
-            font-size: 2.7cqw; line-height: 1.6; font-style: italic; font-weight: normal; margin-bottom: 4cqw; 
+            font-size: 2.4cqw; line-height: 1.6; font-style: italic; font-weight: normal; margin-bottom: 4cqw; 
             color: #eee;
         }
         .quote-citation { 
@@ -314,7 +318,7 @@
             padding-top: 5cqh; 
         }
         .invite-title { 
-            font-family: 'JimmyScript', cursive; font-size: 7cqw; 
+            font-family: 'Playfair', cursive; font-size: 7cqw; 
             margin-bottom: 2cqw; line-height: 1.2; font-weight: normal; color: #fff;
         }
         .invite-body { 
@@ -322,7 +326,7 @@
         }
         .countdown-box { display: flex; justify-content: center; gap: 2cqw; margin-top: 2.5cqw; width: 100%; }
         .countdown-text { 
-            grid-column: 1 / -1; font-family: 'IbarraRealNova', cursive; 
+            grid-column: 1 / -1; font-family: 'Playfair', cursive; 
             font-size: 6cqw; margin-top: 5cqw; padding-left: 2cqw; color: #fff; 
         }
         .time-item { 
@@ -374,7 +378,7 @@
             margin-bottom: 1cqw; line-height: 1.2; color: #fff;
         }
         .bride-parents { 
-            font-family: 'IbarraRealNova', serif; font-size: 2.5cqw; 
+            font-family: 'IbarraRealNova', serif; font-size: 4cqw; 
             line-height: 1.5; font-weight: bold; color: #ccc;
         }
 
@@ -395,7 +399,8 @@
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         }
         .save-date-title { 
-            font-family: 'JimmyScript', cursive; font-size: 7cqw; margin-bottom: 1cqw; 
+            font-family: 'Playfair', cursive; font-size: 7cqw; margin-bottom: 1cqw; 
+            text-transform: uppercase;
         }
         .date-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4cqw; align-items: center; width: 100%; }
         .date-left { display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid rgba(255,255,255,0.2); padding-right: 2cqw; }
@@ -437,14 +442,14 @@
         }
         .gift-box { text-align: center; }
         .gift-title { 
-            font-family: 'JimmyScript', cursive; font-size: 7cqw; margin-bottom: 2cqw; 
+            font-family: 'Playfair', cursive; font-size: 5cqw; margin-bottom: 2cqw; 
         }
         .gift-body { 
-            font-family: 'IbarraRealNova', serif; font-size: 2.4cqw; line-height: 1.4; margin-bottom: 5cqw; color: #ddd;
+            font-family: 'Raleway', serif; font-size: 3cqw; line-height: 1.4; margin-bottom: 5cqw; color: #ddd;
         }
         .bank-container { display: grid; grid-template-columns: 2fr 1fr; align-items: center; gap: 2cqw; text-align: left; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2cqw; }
         .bank-details p { 
-            font-family: 'IbarraRealNova', serif; font-size: 3.5cqw; margin-bottom: 1.5cqw; line-height: 1.2; color: #eee;
+            font-family: 'Raleway', serif; font-size: 3.5cqw; margin-bottom: 1.5cqw; line-height: 1.2; color: #eee;
         }
         .bank-details strong { font-weight: bold; color: #fff; }
         
@@ -453,10 +458,10 @@
         
         .address-box { display: flex; flex-direction: column; align-items: center; }
         .address-title { 
-            font-family: 'JimmyScript', cursive; font-size: 7cqw; margin-bottom: 2cqw; 
+            font-family: 'Playfair', cursive; font-size: 5.cqw; margin-bottom: 2cqw; 
         }
         .address-body { 
-            font-family: 'IbarraRealNova', serif; font-size: 2cqw; line-height: 1.4; color: #ccc;
+            font-family: 'Raleway', serif; font-size: 2.5cqw; line-height: 1.4; color: #ccc;
         }
         .btn-copy-sm { 
             background-color: transparent; border: 1px solid #fff; color: #fff; 
@@ -481,7 +486,7 @@
         }
         .gallery-box { max-height: 80cqh; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #fff #333; }
         .gallery-title { 
-            font-family: 'JimmyScript', cursive; font-size: 7cqw; margin-bottom: 2cqw; 
+            font-family: 'Playfair', cursive; font-size: 7cqw; margin-bottom: 2cqw; 
         }
         .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3cqw; padding-bottom: 3cqw; }
         .gallery-item { 
@@ -498,15 +503,15 @@
             padding-top: 19cqh; padding-bottom: 15cqh; 
         }
         .monogram-p9 img { width: 35cqw; height: auto; opacity: 0.8; filter: drop-shadow(0 0 10px rgba(255,255,255,0.1)) brightness(0) invert(1); }
-        .footer-box { padding: 1cqw 1cqw; }
+        .footer-box { padding: 3cqw 3cqw; }
         .footer-message { 
-            font-family: 'IbarraRealNova', serif; font-size: 2.5cqw; font-style: italic; line-height: 1.4; margin-bottom: 4cqw; color: #ddd;
+            font-family: 'Raleway', serif; font-size: 2.5cqw; font-style: italic; line-height: 1.4; margin-bottom: 3cqw; color: #ddd;
         }
         .footer-couple { 
-            font-family: 'BodoniCondC', serif; font-size: 7cqw; text-transform: uppercase; line-height: 1; margin-bottom: 4cqw; color: #fff;
+            font-family: 'Playfair', serif; font-size: 7cqw; text-transform: uppercase; line-height: 1; margin-bottom: 2qw; color: #fff;
         }
         .footer-credit { 
-            font-family: 'IbarraRealNova', serif; font-size: 3cqw; color: #888; 
+            font-family: 'Montserrat', serif; font-size: 3cqw; color: #888; 
         }
         .footer-credit strong { color: #ccc; }
 
@@ -578,6 +583,7 @@
             .desktop-bg-side { display: none; }
             .mobile-frame-wrapper { max-width: 100%; border-left: none; box-shadow: none; }
         }
+    
     </style>
 </head>
 <body>
