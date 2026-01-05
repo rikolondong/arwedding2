@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">
+    <meta name="description" content="The Wedding of Alvina & Riko">
     <title>The Wedding of Alvina & Riko</title>
 
     <link rel="shortcut icon" href="favicon-32x32.png" type="image/png">
-    <link rel="icon" href="favicon-32x32.png" type="image/png">
-    <link rel="apple-touch-icon" href="favicon-32x32.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
     <style>
-
         /* =========================================
            1. FONTS & RESET
            ========================================= */
-        @font-face { font-family: 'Engagement'; src: url('Engagement-Regular.ttf') format('truetype'); font-weight: normal; font-style: normal; }
-        @font-face { font-family: 'BodoniCondC'; src: url('BodoniCondC.otf') format('opentype'); font-weight: normal; font-style: normal; }
-        @font-face { font-family: 'IbarraRealNova'; src: url('IbarraRealNova-VariableFont_wght.ttf') format('truetype'); font-weight: bold; font-style: normal; }
-        @font-face { font-family: 'JimmyScript'; src: url('JimmyScript-Rg.otf') format('opentype'); font-weight: normal; font-style: normal; }
+        /* Optimasi font loading dengan swap */
+        @font-face { font-family: 'Engagement'; src: url('Engagement-Regular.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'BodoniCondC'; src: url('BodoniCondC.otf') format('opentype'); font-weight: normal; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'IbarraRealNova'; src: url('IbarraRealNova-VariableFont_wght.ttf') format('truetype'); font-weight: bold; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'JimmyScript'; src: url('JimmyScript-Rg.otf') format('opentype'); font-weight: normal; font-style: normal; font-display: swap; }
 
         :root {
             --glass-bg: rgba(0, 0, 0, 0.6);
@@ -39,12 +39,20 @@
             width: 100%;
             overflow: hidden;
             background-color: #000; 
-            font-family: sans-serif;
-            color: #fff; /* Default text white */
+            font-family: 'Poppins', sans-serif; /* Fallback font */
+            color: #fff;
+        }
+
+        /* Helper Class untuk Glassmorphism Mobile Friendly */
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); /* Wajib untuk Safari/iOS */
+            background-color: var(--dark-glass-card);
+            border: 1px solid var(--border-glass);
         }
 
         /* =========================================
-           2. DESKTOP LAYOUT WRAPPER
+           2. LAYOUT
            ========================================= */
         .desktop-layout {
             display: flex;
@@ -64,10 +72,9 @@
         .desktop-bg-side::after {
             content: '';
             position: absolute; inset: 0;
-            background: rgba(0,0,0,0.6); /* Lebih gelap */
+            background: rgba(0,0,0,0.6);
         }
 
-        /* Container Simulasi HP */
         .mobile-frame-wrapper {
             width: 100%;
             max-width: 480px;
@@ -77,6 +84,7 @@
             container-type: size; 
             overflow: hidden;
             border-left: 1px solid #333;
+            margin: 0 auto; /* Center jika di layar besar tanpa side bg */
         }
 
         /* =========================================
@@ -91,6 +99,7 @@
             justify-content: center; align-items: center;
             text-align: center;
             transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+            will-change: transform;
         }
         #splash-screen.slide-up { transform: translateY(-100%); }
 
@@ -121,31 +130,31 @@
             line-height: 1.1; 
         }
         
-        /* Glassmorphism Dark untuk Guest Box */
         .guest-box {
+            /* Menggunakan class glass-effect via CSS properties di sini */
             background: var(--dark-glass-card); 
             border: 1px solid var(--border-glass);
+            backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px);
             padding: 5cqw; 
             border-radius: 3cqw; 
             margin-bottom: 8cqw; 
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             color: #fff;
             width: 80%; margin-left: auto; margin-right: auto;
-            box-shadow: none; /* Hilangkan Shadow */
         }
         .guest-label { font-size: 3cqw; display: block; margin-bottom: 2cqw; opacity: 0.8; font-family: 'IbarraRealNova', serif; }
         .guest-name { font-size: 5cqw; font-weight: 600; display: block; font-family: 'BodoniCondC', serif; letter-spacing: 1px; }
 
         .btn-open {
             padding: 3cqw 8cqw; 
-            background: rgba(255, 255, 255, 0.1); /* Transparan */
+            background: rgba(255, 255, 255, 0.1);
             border: 1px solid var(--border-glass);
             color: #fff; font-weight: bold; font-family: 'IbarraRealNova', serif;
-            border-radius: 10cqw; cursor: pointer; transition: transform 0.2s, background 0.3s;
+            border-radius: 10cqw; cursor: pointer; 
+            transition: transform 0.2s, background 0.3s;
             font-size: 4cqw; 
-            box-shadow: none; /* Hilangkan Shadow */
             display: inline-flex; align-items: center; gap: 2cqw;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
         }
         .btn-open:active { transform: scale(0.95); background: rgba(255,255,255,0.2); }
 
@@ -157,7 +166,7 @@
             overflow-y: scroll; scroll-snap-type: y mandatory;
             scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none;
             position: relative; opacity: 0; transition: opacity 1s ease 0.5s;
-            background-color: #000; /* Dasar hitam untuk fade to black */
+            background-color: #000;
         }
         .app-container.show { opacity: 1; }
         .app-container::-webkit-scrollbar { display: none; }
@@ -170,18 +179,16 @@
         .bg-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; z-index: 0;
-            opacity: 0; /* Default opacity 0 untuk transisi */
-            transition: opacity 1.2s ease-in-out; /* Transisi Fade Video */
+            opacity: 0; 
+            transition: opacity 1.2s ease-in-out;
+            will-change: opacity;
         }
         
-        /* Class active ditambahkan via JS untuk memicu transisi */
-        .invitation-page.active-page .bg-video {
-            opacity: 1;
-        }
+        .invitation-page.active-page .bg-video { opacity: 1; }
 
         .overlay {
             position: absolute; inset: 0;
-            background: rgba(0,0,0,0); /* Lebih gelap untuk Dark Mode */
+            background: rgba(0,0,0,0.3); /* Sedikit dipergelap agar teks lebih kontras */
             z-index: 1;
         }
 
@@ -189,34 +196,27 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; z-index: 1; pointer-events: none;
             animation: smoothZoom 3s ease-in-out infinite alternate;
-            /* opacity: 0.4; */
         }
         @keyframes smoothZoom { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
 
-        /* =========================================
-           5. ANIMATED CONTENT WRAPPER (ZOOM + FADE)
-           ========================================= */
-        /* Wrapper untuk konten di dalam page agar bisa di-zoom */
+        /* Content Wrapper Zoom + Blur */
         .page-content-wrapper {
             width: 100%; height: 100%; position: relative; z-index: 2;
             opacity: 0;
-            transform: scale(0.85); /* Zoom out state */
+            transform: scale(0.85);
             filter: blur(5px);
-            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-            transition-delay: 0.2s; /* Delay sedikit agar background muncul duluan */
+            transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1s ease;
+            transition-delay: 0.2s;
+            will-change: opacity, transform, filter;
         }
 
         .invitation-page.active-page .page-content-wrapper {
             opacity: 1;
-            transform: scale(1); /* Zoom in normal */
+            transform: scale(1);
             filter: blur(0);
         }
 
-        /* =========================================
-           !!! NEW ANIMATION: SMOOTH RISE UP !!!
-           ========================================= */
-        
-        /* State Awal: Hilang dan di bawah */
+        /* Animations */
         .scroll-anim {
             opacity: 0;
             transform: translateY(50px);
@@ -224,21 +224,18 @@
             will-change: opacity, transform;
         }
 
-        /* State Akhir: Muncul dan di posisi normal */
-        /* Triggered saat parent page memiliki class active-page */
         .invitation-page.active-page .scroll-anim {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Utilitas Delay agar tidak muncul barengan */
-        .d-1 { transition-delay: 1s; }
-        .d-2 { transition-delay: 1s; }
-        .d-3 { transition-delay: 1s; }
-        .d-4 { transition-delay: 1s; }
-        .d-5 { transition-delay: 1s; }
+        .d-1 { transition-delay: 0.2s; }
+        .d-2 { transition-delay: 0.4s; }
+        .d-3 { transition-delay: 0.6s; }
+        .d-4 { transition-delay: 0.8s; }
+        .d-5 { transition-delay: 1.0s; }
 
-        /* Khusus Gallery Grid Cascade */
+        /* Gallery Animation */
         .invitation-page.active-page .gallery-item {
             opacity: 0; transform: translateY(30px);
             animation: galleryRise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
@@ -252,24 +249,21 @@
         .invitation-page.active-page .gallery-item:nth-child(5) { animation-delay: 0.7s; }
         .invitation-page.active-page .gallery-item:nth-child(6) { animation-delay: 0.8s; }
 
-
         /* =========================================
-           6. CONTENT STYLES (DARK GLASS)
+           5. CONTENT STYLES
            ========================================= */
-        
-        /* Ganti .white-box menjadi Dark Glass */
         .dark-glass-box {
+            /* Menerapkan Glassmorphism */
             background-color: var(--dark-glass-card);
             border: 1px solid var(--border-glass);
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); /* Safari Fix */
             border-radius: 2cqw;
             padding: 2cqw 2cqw; 
             text-align: center; color: #fff;
             width: 90%; 
-            box-shadow: none; /* No Shadow */
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5cqw); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(8cqw); } to { opacity: 1; transform: translateY(0); } }
 
         /* Page 1 */
@@ -304,7 +298,7 @@
         }
         .quote-text { 
             font-family: 'IbarraRealNova', serif; 
-            font-size: 2.7cqw; line-height: 1.6; font-style: italic; font-weight: normal; margin-bottom: 4cqw; 
+            font-size: 2cqw; line-height: 1.6; font-style: italic; font-weight: normal; margin-bottom: 4cqw; 
             color: #eee;
         }
         .quote-citation { 
@@ -339,8 +333,7 @@
             width: 18cqw; 
             display: flex; flex-direction: column; align-items: center; 
             color: #fff; 
-            box-shadow: none;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
         }
         .time-val { 
             font-family: 'IbarraRealNova', serif; font-size: 6cqw; font-weight: bold; line-height: 1.2; 
@@ -366,9 +359,8 @@
             padding: 7cqw 3cqw 3cqw 3cqw; 
             text-align: center; color: #fff; 
             width: 100%; 
-            box-shadow: none; /* No Shadow */
             position: relative; 
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         }
         .profile-img-container { 
             width: 15cqw; height: 15cqw; 
@@ -398,10 +390,9 @@
             border-radius: 5cqw; 
             padding: 2cqw; 
             width: 100%; 
-            box-shadow: none; /* No Shadow */
             color: #fff; 
             display: flex; flex-direction: column; align-items: center; 
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         }
         .save-date-title { 
             font-family: 'JimmyScript', cursive; font-size: 7cqw; margin-bottom: 1cqw; 
@@ -434,7 +425,7 @@
             border-radius: 10cqw; text-decoration: none; 
             font-family: 'IbarraRealNova', sans-serif; font-weight: bold; 
             font-size: 3.5cqw; 
-            box-shadow: none; transition: transform 0.2s, background-color 0.2s; 
+            transition: transform 0.2s, background-color 0.2s; 
         }
         .btn-location:active { transform: scale(0.95); background-color: rgba(255,255,255,0.2); }
 
@@ -457,7 +448,6 @@
         }
         .bank-details strong { font-weight: bold; color: #fff; }
         
-        /* Background putih kecil untuk logo agar terlihat di dark mode jika logo transparan/gelap */
         .bank-logo { background: rgba(255,255,255,0.9); padding: 1cqw; border-radius: 1cqw; }
         .bank-logo img { width: 100%; max-width: 20cqw; height: auto; display: block; margin: 0 auto; }
         
@@ -480,7 +470,7 @@
             font-size: 3.5cqw; 
             cursor: pointer; margin-top: 2cqw; 
             font-family: 'IbarraRealNova', serif; font-weight: bold; 
-            box-shadow: none; transition: transform 0.1s; 
+            transition: transform 0.1s; 
         }
         .btn-copy-block:active, .btn-copy-sm:active { transform: scale(0.95); background: rgba(255,255,255,0.2); }
 
@@ -496,7 +486,7 @@
         .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3cqw; padding-bottom: 3cqw; }
         .gallery-item { 
             border: 1px solid var(--border-glass); border-radius: 3cqw; overflow: hidden; aspect-ratio: 1/1; 
-            background-color: #222; box-shadow: none; /* No Shadow */
+            background-color: #222; 
         }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
         .gallery-item img:hover { transform: scale(1.05); }
@@ -510,7 +500,7 @@
         .monogram-p9 img { width: 35cqw; height: auto; opacity: 0.8; filter: drop-shadow(0 0 10px rgba(255,255,255,0.1)) brightness(0) invert(1); }
         .footer-box { padding: 1cqw 1cqw; }
         .footer-message { 
-            font-family: 'IbarraRealNova', serif; font-size: 3.5cqw; font-style: italic; line-height: 1.4; margin-bottom: 4cqw; color: #ddd;
+            font-family: 'IbarraRealNova', serif; font-size: 2.5cqw; font-style: italic; line-height: 1.4; margin-bottom: 4cqw; color: #ddd;
         }
         .footer-couple { 
             font-family: 'BodoniCondC', serif; font-size: 7cqw; text-transform: uppercase; line-height: 1; margin-bottom: 4cqw; color: #fff;
@@ -521,7 +511,7 @@
         .footer-credit strong { color: #ccc; }
 
         /* =========================================
-           7. MUSIC & NAVIGATION
+           6. MUSIC & NAVIGATION
            ========================================= */
         .music-btn {
             position: absolute; 
@@ -533,7 +523,9 @@
             border-radius: 50%;
             display: none; 
             align-items: center; justify-content: center;
-            cursor: pointer; backdrop-filter: blur(8px); color: #fff;
+            cursor: pointer; 
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            color: #fff;
             transition: all 0.3s ease;
         }
         .music-btn.playing {
@@ -547,7 +539,7 @@
             position: absolute; 
             bottom: -20cqw; left: 50%; transform: translateX(-50%); 
             z-index: var(--z-nav);
-            background: rgba(10, 10, 10, 0.7); /* Dark Glass Nav */
+            background: rgba(10, 10, 10, 0.7); 
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             padding: 3cqw 6cqw; border-radius: 8cqw;
             display: flex; gap: 6cqw; align-items: center;
@@ -586,9 +578,6 @@
             .desktop-bg-side { display: none; }
             .mobile-frame-wrapper { max-width: 100%; border-left: none; box-shadow: none; }
         }
-    
-    
-    
     </style>
 </head>
 <body>
@@ -631,7 +620,7 @@
             <div class="app-container" id="app-scroller">
                 
                 <section class="invitation-page" id="page1" data-nav="0">
-                    <video class="bg-video" autoplay muted loop playsinline poster="1.jpg"><source src="1.mp4" type="video/mp4"></video>
+                    <video class="bg-video" muted loop playsinline webkit-playsinline poster="1.jpg"><source src="1.mp4" type="video/mp4"></video>
                     <div class="overlay"></div>
                     <div class="page-content-wrapper">
                         <div class="content-grid-p1">
@@ -646,11 +635,11 @@
                 </section>
 
                 <section class="invitation-page" id="page2" data-nav="0">
-                    <video class="bg-video" autoplay muted loop playsinline poster="2.jpg"><source src="2.mp4" type="video/mp4"></video>
+                    <video class="bg-video" muted loop playsinline webkit-playsinline poster="2.jpg"><source src="2.mp4" type="video/mp4"></video>
                     <div class="overlay"></div>
                     <div class="page-content-wrapper">
                         <div class="page2-container">
-                            <div class="monogram-p2 scroll-anim d-1"><img src="monogram-ar.png" alt="A&R Monogram"></div>                 
+                            <div class="monogram-p2 scroll-anim d-1"><img src="monogram-ar.png" alt="A&R Monogram"></div>                  
                             <div class="dark-glass-box scroll-anim d-2">
                                 <p class="quote-text">"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."</p>
                                 <p class="quote-citation">(QS Ar-Rum : 21)</p>
@@ -660,13 +649,13 @@
                 </section>
 
                 <section class="invitation-page" id="page3" data-nav="0">
-                    <video class="bg-video" autoplay muted loop playsinline poster="3.jpg"><source src="3.mp4" type="video/mp4"></video>
+                    <video class="bg-video" muted loop playsinline webkit-playsinline poster="3.jpg"><source src="3.mp4" type="video/mp4"></video>
                     <div class="overlay"></div>
                     <div class="page-content-wrapper">
                         <div class="page3-container">
                              <div class="dark-glass-box scroll-anim d-1">
                                 <h2 class="invite-title">We Are Getting Married!</h2>
-                                <p class="invite-body">Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/I untuk menghadiri acara pernikahan kami</p>
+                                <p class="invite-body">Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami</p>
                             </div>
                             <div class="countdown-text scroll-anim d-2">COUNTDOWN</div>
                             <div class="countdown-box scroll-anim d-3">
@@ -680,13 +669,13 @@
                 </section>
 
                 <section class="invitation-page" id="page4" data-nav="1">
-                    <video class="bg-video" autoplay muted loop playsinline poster="4.jpg"><source src="4.mp4" type="video/mp4"></video>
+                    <video class="bg-video" muted loop playsinline webkit-playsinline poster="4.jpg"><source src="4.mp4" type="video/mp4"></video>
                     <div class="overlay"></div>
                     <div class="page-content-wrapper">
                         <div class="profile-page-container">
                             <h2 class="page-title scroll-anim d-1">The Bride & Groom</h2>
                              <div class="profile-card scroll-anim d-2">
-                                <div class="profile-img-container"><img src="bride.jpg" alt="Alvina Nur Safitri"></div>
+                                <div class="profile-img-container"><img src="bride.jpg" alt="Alvina Nur Safitri" loading="lazy"></div>
                                 <h3 class="bride-name">Alvina Nur Safitri., S.Kom</h3>
                                 <p class="bride-parents">Putri dari Bapak Oom Supratman (Alm.) & Ibu Ai Subagja</p>
                             </div>
@@ -695,13 +684,13 @@
                 </section>
 
                 <section class="invitation-page" id="page5" data-nav="1">
-                    <video class="bg-video" autoplay muted loop playsinline poster="5.jpg"><source src="5.mp4" type="video/mp4"></video>
+                    <video class="bg-video" muted loop playsinline webkit-playsinline poster="5.jpg"><source src="5.mp4" type="video/mp4"></video>
                     <div class="overlay"></div>
                     <div class="page-content-wrapper">
                         <div class="profile-page-container">
                             <h2 class="page-title scroll-anim d-1">The Bride & Groom</h2>
                             <div class="profile-card scroll-anim d-2">
-                                <div class="profile-img-container"><img src="groom.jpg" alt="Riko Reky Londong"></div>
+                                <div class="profile-img-container"><img src="groom.jpg" alt="Riko Reky Londong" loading="lazy"></div>
                                 <h3 class="bride-name">Riko Reky Londong., S.Kom</h3>
                                 <p class="bride-parents">Putra dari Bapak Piet Londong & Ibu Tuty Alawiyah</p>
                             </div>
@@ -710,7 +699,7 @@
                 </section>
 
                 <section class="invitation-page" id="page6" data-nav="2">
-                    <video class="bg-video" autoplay muted loop playsinline poster="6.jpg"><source src="6.mp4" type="video/mp4"></video>
+                    <video class="bg-video" muted loop playsinline webkit-playsinline poster="6.jpg"><source src="6.mp4" type="video/mp4"></video>
                     <div class="overlay"></div>
                     <div class="page-content-wrapper">
                         <div class="page6-container">
@@ -730,13 +719,13 @@
                 </section>
 
                 <section class="invitation-page" id="page7" data-nav="3">
-                    <video class="bg-video" autoplay muted loop playsinline poster="7.jpg"><source src="7.mp4" type="video/mp4"></video>
+                    <video class="bg-video" muted loop playsinline webkit-playsinline poster="7.jpg"><source src="7.mp4" type="video/mp4"></video>
                     <div class="overlay"></div>
                     <div class="page-content-wrapper">
                         <div class="page7-container">
                             <div class="dark-glass-box gift-box scroll-anim d-1">
                                 <h2 class="gift-title">Wedding Gift</h2>
-                                <p class="gift-body">Doa restu anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih, kami akan senang hati menerimanya.</p>
+                                <p class="gift-body">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih, kami akan senang hati menerimanya.</p>
                                 <div class="bank-container">
                                     <div class="bank-details">
                                         <p>Bank BNI</p>
@@ -747,7 +736,7 @@
                                         <p>1044120296 <button class="btn-copy-sm" onclick="copyToClipboard('1044120296', 'No. Rekening Riko')">Salin</button></p>
                                         <p>a.n <strong>Riko Reky Londong</strong></p>
                                     </div>
-                                    <div class="bank-logo"><img src="logo-bni.png" alt="BNI Logo"></div>
+                                    <div class="bank-logo"><img src="logo-bni.png" alt="BNI Logo" loading="lazy"></div>
                                 </div>
                             </div>
 
@@ -761,19 +750,19 @@
                 </section>
 
                 <section class="invitation-page" id="page8" data-nav="4">
-                    <img src="8.jpg" alt="Gallery Background" class="bg-video">
+                    <img src="8.png" alt="Gallery Background" class="bg-video" loading="lazy">
                     <div class="overlay"></div>
                     <div class="page-content-wrapper">
                         <div class="page8-container">
                             <div class="dark-glass-box gallery-box">
                                 <h2 class="gallery-title scroll-anim d-1">Our Gallery</h2>
                                 <div class="gallery-grid">
-                                    <div class="gallery-item"><img src="gallery1.jpg" alt="Foto 1"></div>
-                                    <div class="gallery-item"><img src="gallery2.jpg" alt="Foto 2"></div>
-                                    <div class="gallery-item"><img src="gallery3.jpg" alt="Foto 3"></div>
-                                    <div class="gallery-item"><img src="gallery4.jpg" alt="Foto 4"></div>
-                                    <div class="gallery-item"><img src="gallery5.jpg" alt="Foto 5"></div>
-                                    <div class="gallery-item"><img src="gallery6.jpg" alt="Foto 6"></div>
+                                    <div class="gallery-item"><img src="gallery1.jpg" alt="Foto 1" loading="lazy"></div>
+                                    <div class="gallery-item"><img src="gallery2.jpg" alt="Foto 2" loading="lazy"></div>
+                                    <div class="gallery-item"><img src="gallery3.jpg" alt="Foto 3" loading="lazy"></div>
+                                    <div class="gallery-item"><img src="gallery4.jpg" alt="Foto 4" loading="lazy"></div>
+                                    <div class="gallery-item"><img src="gallery5.jpg" alt="Foto 5" loading="lazy"></div>
+                                    <div class="gallery-item"><img src="gallery6.jpg" alt="Foto 6" loading="lazy"></div>
                                 </div>
                             </div>
                         </div>
@@ -781,15 +770,15 @@
                 </section>
 
                 <section class="invitation-page" id="page9" data-nav="4">
-                    <video class="bg-video" autoplay muted loop playsinline poster="9.jpg">
+                    <video class="bg-video" muted loop playsinline webkit-playsinline poster="9.jpg">
                         <source src="9.mp4" type="video/mp4">
                     </video>
                     <div class="overlay"></div>
-                    <img src="99.png" class="overlay-zoom-img" alt="Decoration Overlay">
+                    <img src="99.png" class="overlay-zoom-img" alt="Decoration Overlay" loading="lazy">
                     <div class="page-content-wrapper">
                         <div class="page9-container">
                             <div class="monogram-p9 scroll-anim d-1">
-                                <img src="monogram-ar.png" alt="A&R Monogram">
+                                <img src="monogram-ar.png" alt="A&R Monogram" loading="lazy">
                             </div>
                             <div class="dark-glass-box footer-box scroll-anim d-2">
                                 <p class="footer-message">
@@ -797,7 +786,7 @@
                                 </p>
                                 <h2 class="footer-couple">Alvina & Riko</h2>
                                 <p class="footer-credit">
-                                    developed by <strong>AR Softworks</strong>
+                                    Developed by <strong>AR Softworks</strong>
                                 </p>
                             </div>
                         </div>
@@ -832,7 +821,10 @@
 
             <div id="copy-toast">Teks berhasil disalin!</div>
         
-        </div> </div> <script>
+        </div> 
+    </div> 
+
+    <script>
         // --- 1. SETUP VARIABEL ---
         const splashScreen = document.getElementById('splash-screen');
         const appContainer = document.querySelector('.app-container');
@@ -858,8 +850,9 @@
             setTimeout(() => {
                 bottomNav.classList.add('show-nav');
                 musicBtn.style.display = 'flex';
-                // Trigger animasi page pertama manual
+                // Trigger page 1 active untuk memulai video page 1
                 document.getElementById('page1').classList.add('active-page');
+                playVideoInPage(document.getElementById('page1'));
             }, 500);
 
             // Putar Musik
@@ -884,21 +877,39 @@
             isMusicPlaying = !isMusicPlaying;
         });
 
-        // --- 5. NAVIGASI SCROLL & ANIMASI TRANSISI ---
+        // --- 5. NAVIGASI SCROLL, ANIMASI & VIDEO CONTROL ---
         function scrollToPage(pageId) {
             document.getElementById(pageId).scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Detect Active Section untuk Navigasi & Animasi
+        // Helper: Play/Pause Video in Section
+        function playVideoInPage(section) {
+            const vid = section.querySelector('video');
+            if (vid) {
+                vid.play().catch(err => console.log("Video play interrupted", err));
+            }
+        }
+
+        function pauseVideoInPage(section) {
+            const vid = section.querySelector('video');
+            if (vid) {
+                vid.pause();
+            }
+        }
+
+        // Detect Active Section
         const sections = document.querySelectorAll('.invitation-page');
         const observerOptions = { root: appContainer, threshold: 0.5 };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Tambahkan class active-page untuk memicu CSS Transition (Fade to Black + Zoom)
+                    // Masuk Viewport
                     entry.target.classList.add('active-page');
                     
+                    // Logic Video: Play
+                    playVideoInPage(entry.target);
+
                     // Update Navigasi
                     const navIndex = entry.target.getAttribute('data-nav');
                     if (navIndex !== null) {
@@ -906,8 +917,10 @@
                         if(navItems[navIndex]) navItems[navIndex].classList.add('active');
                     }
                 } else {
-                    // Hapus class active-page saat keluar agar animasi reset (efek fade to black)
+                    // Keluar Viewport
                     entry.target.classList.remove('active-page');
+                    // Logic Video: Pause (Hemat Baterai & Memori)
+                    pauseVideoInPage(entry.target);
                 }
             });
         }, observerOptions);
@@ -925,10 +938,10 @@
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
             if (document.getElementById("days")) {
-                document.getElementById("days").innerHTML = days;
-                document.getElementById("hours").innerHTML = hours;
-                document.getElementById("minutes").innerHTML = minutes;
-                document.getElementById("seconds").innerHTML = seconds;
+                document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+                document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+                document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+                document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
             }
 
             if (distance < 0) {
